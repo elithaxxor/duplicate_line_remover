@@ -5,7 +5,7 @@ Features and Optimizations:
 ## Custom Hash Table Implementation:
 
 Uses a hash table with separate chaining for fast O(1) lookups
-Employs the DJB2 hashing algorithm, which is both fast and offers good distribution
+Employs the DJB2 hashing algorithm, which is both fast and offers good distributions
 Uses a prime number table size (1,000,003) to minimize collisions
 
 
