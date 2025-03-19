@@ -1,29 +1,14 @@
-name: C/C++ CI
+#!/bin/bash
 
-on: [push, pull_request]
+echo "[+] Connfig "
 
-jobs:
-  build:
-    runs-on: ubuntu-latest
+# Check for required tools
+for tool in gcc make; do
+    if ! command -v $tool &> /dev/null; then
+        echo "$tool is required but not installed. Please install it."
+        exit 1
+    fi
+done
 
-    steps:
-    - name: Checkout repository
-      uses: actions/checkout@v2
-
-    - name: Set up C/C++ compilers
-      uses: actions/setup-cpp@v1
-      with:
-        compiler: gcc
-
-    - name: Install dependencies
-      run: sudo apt-get install -y build-essential
-
-    # Remove or replace this step if `configure` is not needed
-    - name: Configure the project
-      run: test -f ./configure && ./configure || echo "No configure script, skipping"
-
-    - name: Build the project
-      run: make
-
-    - name: Run tests
-      run: make test
+echo "[+] All required tools are installed."
+echo "[+] Configuration complete."
